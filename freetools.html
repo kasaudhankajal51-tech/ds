@@ -140,14 +140,22 @@
               <a class="nav-link" href="blog.html">BLOG </a>
             </li>
             <li class="nav-item dropdown" >
-              <a class="nav-link dropdown-toggle" href="#coursestart" role="button" data-bs-toggle="dropdown">
-                COURSES
-              </a>
+              <div class="d-flex align-items-center">
+                <!-- TEXT CLICK = PAGE OPEN -->
+                <a class="nav-link" href="basiccourse.html">
+                  COURSES
+                </a>
+                <!-- ARROW CLICK = DROPDOWN -->
+                <a class="nav-link dropdown-toggle dropdown-toggle-split"
+                   href="#"
+                   data-bs-toggle="dropdown">
+                </a>
+              </div>
               <ul class="dropdown-menu dropdown-menu1">
-                <li><a class="dropdown-item" href="#coursestart">Beginner Astrology</a></li>
-                <li><a class="dropdown-item" href="#coursestart">Advanced Astrology</a></li>
-                <li><a class="dropdown-item" href="#coursestart">Predictive Astrology</a></li>
-                <li><a class="dropdown-item" href="#coursestart">Certification Courses</a></li>
+                <li><a class="dropdown-item" href="basiccourse.html">Beginner Astrology</a></li>
+                <li><a class="dropdown-item" href="basiccourse.html">Advanced Astrology</a></li>
+                <li><a class="dropdown-item" href="basiccourse.html">Predictive Astrology</a></li>
+                <li><a class="dropdown-item" href="basiccourse.html">Certification Courses</a></li>
               </ul>
             </li>
             <li class="nav-item dropdown">
@@ -638,16 +646,10 @@ function luckyColor(){
                 <li class="nav-item">
                   <a class="nav-link" href="#">BLOG </a>
                 </li>
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                <li class="nav-item">
+                  <a class="nav-link" href="basiccourse.html">
                     COURSES
                   </a>
-                  <ul class="dropdown-menu">1
-                    <li><a class="dropdown-item" href="#course1">Beginner Astrology</a></li>
-                    <li><a class="dropdown-item" href="#course2">Advanced Astrology</a></li>
-                    <li><a class="dropdown-item" href="#course3">Predictive Astrology</a></li>
-                    <li><a class="dropdown-item" href="#course4">Certification Courses</a></li>
-                  </ul>
                 </li>
                  
                  <li class="nav-item dropdown">
@@ -859,9 +861,12 @@ function luckyColor(){
 <script>
 document.querySelectorAll('.dropdown-item').forEach(link => {
   link.addEventListener('click', function(e) {
-    e.preventDefault();
-
     const targetId = this.getAttribute('href');
+
+    // Only handle hash links (#something), let real URLs navigate normally
+    if (!targetId || !targetId.startsWith('#')) return;
+
+    e.preventDefault();
     const target = document.querySelector(targetId);
 
     if (target) {
